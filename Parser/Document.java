@@ -39,12 +39,36 @@ public class Document {
         this.sentences = sentences;
     }
 
-    // TODO: Vi kan be om samtliga meningar oavsett typ. Vi får dem i samma följd som dokumentet 
+    // Vi kan be om samtliga meningar oavsett typ. Vi får dem i samma följd som dokumentet 
     public Sentences getSentences() {
         return sentences;
     }
 
-    // TODO: Vi kan be om alla vanliga meningar (som avslutas med punkt).
-    // TODO: Vi kan be om alla frågor (som avslutas med frågetecken).
+    // Vi kan be om alla vanliga meningar (som avslutas med punkt).
+    public Sentences getEndsWithDot() {
+        return getSentencesEndingWith("DOT");
+    }
+
+    // Vi kan be om alla frågor (som avslutas med frågetecken).
+    public Sentences getEndsWithExclamation() {
+        return getSentencesEndingWith("EXCLAMATION");
+    }
+
     // TODO: Vi kan be om alla utrop (som avslutas med utropstecken).
+    public Sentences getEndsWithQuestion() {
+        return getSentencesEndingWith("QUESTION");
+    }
+
+    private Sentences getSentencesEndingWith(String ending) {
+        Sentences sentencesWithoutDot = new Sentences();
+        for (int i = 0; i < sentences.sentences.size(); i++) {
+            Sentence current = sentences.sentences.get(i);
+            
+            if (current.tokens.get(current.tokens.size() - 1).type == ending) {
+                sentencesWithoutDot.add(current);
+            }
+            
+        }
+        return sentencesWithoutDot;
+    }
 }

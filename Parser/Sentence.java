@@ -3,17 +3,13 @@ import java.util.ArrayList;
 import Tokenizer.Token;
 
 // A sentence is an ArrayList of Tokens, consisting of words and a dot
-
-// TODO: Kunna stega igenom WORD-objekt som meningen består av.
-// TODO: Få hela meningen som en enda sträng med “rätt” avslutande tecken(.?!)
-// de enskilda orden separeras med ett enda mellanslag oavsett vilka whitespace som användes i orginaltexten.
 public class Sentence {
 
     ArrayList<Token> tokens = new ArrayList<Token>();
+    int activeToken = -1;
     
     Sentence(ArrayList<Token> t) {
         this.tokens = t;
-
         // TODO: Implement checking of token type, to only allow word or dot
     }
 
@@ -21,6 +17,39 @@ public class Sentence {
 
     void add(Token t) {
         tokens.add(t);
+    }
+
+    // Kunna stega igenom WORD-objekt som meningen består av.
+    public void next() {
+        // TODO: Do we handle END-logic here?
+        activeToken++;
+        printToken(activeToken);
+    }
+    public void back() {
+        if (activeToken == 0) {
+            throw new IndexOutOfBoundsException("Can't step back further.");
+        } else {
+            activeToken--;
+            printToken(activeToken);
+        }
+    }
+    private void printToken(int i) {
+        System.out.println(tokens.get(i).toString());
+    }
+
+    // Få hela meningen som en enda sträng med “rätt” avslutande tecken(.?!)
+    // de enskilda orden separeras med ett enda mellanslag oavsett vilka whitespace som användes i orginaltexten.
+    public String prettyPrint() {
+        String prettyPrinted = "";
+
+        for (int i = 0; i < tokens.size(); i++) {
+            prettyPrinted += tokens.get(i).value;
+            if (i + 2 < tokens.size()) {
+                prettyPrinted += " ";
+            }
+        }
+
+        return prettyPrinted;
     }
 
     @Override
