@@ -6,7 +6,7 @@ import Tokenizer.Token;
 public class Sentence {
 
     public ArrayList<Token> tokens = new ArrayList<Token>();
-    int activeToken = -1;
+    public int activeToken = -1;
     
     Sentence(ArrayList<Token> t) {
         this.tokens = t;
