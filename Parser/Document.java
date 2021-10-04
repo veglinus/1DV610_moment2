@@ -54,7 +54,7 @@ public class Document {
         return getSentencesEndingWith("EXCLAMATION");
     }
 
-    // TODO: Vi kan be om alla utrop (som avslutas med utropstecken).
+    // Vi kan be om alla utrop (som avslutas med utropstecken).
     public Sentences getEndsWithQuestion() {
         return getSentencesEndingWith("QUESTION");
     }

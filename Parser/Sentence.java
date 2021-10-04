@@ -10,7 +10,6 @@ public class Sentence {
     
     Sentence(ArrayList<Token> t) {
         this.tokens = t;
-        // TODO: Implement checking of token type, to only allow word or dot
     }
 
     Sentence() {}
@@ -21,10 +20,14 @@ public class Sentence {
 
     // Kunna stega igenom WORD-objekt som meningen består av.
     public void next() {
-        // TODO: Do we handle END-logic here?
-        activeToken++;
-        printToken(activeToken);
+        if (activeToken + 1 > tokens.size()) {
+            throw new IndexOutOfBoundsException("Can't step forward further.");
+        } else {
+            activeToken++;
+            printToken(activeToken);
+        }
     }
+
     public void back() {
         if (activeToken == 0) {
             throw new IndexOutOfBoundsException("Can't step back further.");
@@ -44,7 +47,7 @@ public class Sentence {
 
         for (int i = 0; i < tokens.size(); i++) {
             prettyPrinted += tokens.get(i).value;
-            if (i + 2 < tokens.size()) {
+            if (i + 2 < tokens.size()) { // Prevents adding space before last token and after
                 prettyPrinted += " ";
             }
         }
@@ -57,11 +60,9 @@ public class Sentence {
         String data = "";
 
         data += "SENTENCE(";
-        //System.out.println("Size is: " + tokens.size());
         for (int i = 0; i < tokens.size(); i++) {
             data += tokens.get(i).toString();
-            //System.out.println(tokens.get(i).toString());
-            if (i + 1 < tokens.size()) {
+            if (i + 1 < tokens.size()) { // Prevents adding space after last token
                 data += " ";
             }
         }

@@ -6,21 +6,14 @@ public class Example {
 
         Document d = new Document();
         d.parse("Hello world. I am Linus! How are you?");
-        
-        Sentences sentences = d.getSentences();
-
-        System.out.println(sentences.toString());
-        
-        //PrettyPrinter p = new PrettyPrinter(d);
+        //Sentences sentences = d.getSentences();
+        PrettyPrinter p = new PrettyPrinter(d);
         
         /*
+        // For writing every sentence to console
         for (Sentence currentSentence : sentences.sentences) {
             System.out.println(currentSentence.toString());;
         } */   
 
-
-
-
-        
     }
 }
