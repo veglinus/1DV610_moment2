@@ -13,4 +13,8 @@ public class Sentences {
     void add(Sentence sentence) {
         sentences.add(sentence);
     }
+
+    ArrayList<Sentence> get() {
+        return this.sentences;
+    }
 }

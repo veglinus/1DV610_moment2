@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import Tokenizer.Token;
 
 // A sentence is an ArrayList of Tokens, consisting of words and a dot
+
+// TODO: Kunna stega igenom WORD-objekt som meningen består av.
+// TODO: Få hela meningen som en enda sträng med “rätt” avslutande tecken(.?!)
+// de enskilda orden separeras med ett enda mellanslag oavsett vilka whitespace som användes i orginaltexten.
 public class Sentence {
 
     ArrayList<Token> tokens = new ArrayList<Token>();
