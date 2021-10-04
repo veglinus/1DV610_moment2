@@ -5,7 +5,7 @@ import Tokenizer.Token;
 // A sentence is an ArrayList of Tokens, consisting of words and a dot
 public class Sentence {
 
-    ArrayList<Token> tokens = new ArrayList<Token>();
+    public ArrayList<Token> tokens = new ArrayList<Token>();
     int activeToken = -1;
     
     Sentence(ArrayList<Token> t) {

@@ -2,7 +2,7 @@ package Parser;
 import Tokenizer.*;
 
 public class Document {
-    Sentences sentences;
+    public Sentences sentences;
     Tokenizer tokenizer;
     Grammar WordAndDotGrammar = new Grammar();
 
