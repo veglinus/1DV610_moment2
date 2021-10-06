@@ -21,7 +21,7 @@ public class Document {
         Sentence currentData = new Sentence();
 
         do {
-            Token token = tokenizer.next();
+            Token token = tokenizer.getActiveToken();
             currentData.add(token);
 
             if (token.type == "DOT" || token.type == "EXCLAMATION" || token.type == "QUESTION") {
@@ -33,6 +33,8 @@ public class Document {
             if (token.type == "END") {
                 endNotReached = false;
             }
+
+            tokenizer.next();
 
         } while (endNotReached);
 
