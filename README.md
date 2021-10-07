@@ -14,3 +14,8 @@ DOCUMENT
         SENTENCE (WORD(“I”), WORD(“love”), WORD(“parsers”), DOT(“.”))
         SENTENCE (WORD(“They”), WORD(“are”), WORD(“fun”), DOT(“.”))
 END
+
+
+TODO:
+Verifiera så document stämmer (har end, inget kommer efter)
+Sentence faktiskt har en ändelse som punkt, utrop- eller frågetecken
