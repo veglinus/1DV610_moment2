@@ -31,9 +31,6 @@ Förtydligande: Examinator kommer sätta betyg oberoende på vad ni anser. Att h
 
 https://docs.google.com/document/d/1Xlf7ejDqDQAfwgxhE6-smbvm8phJpHAhunTOytMzyNQ/edit?usp=sharing
 
-## Hur jag testat
-Beskriv hur du kommit fram till om din kod fungerar. Beskriv de olika delarna och hur de testats. Screenshots från manuell testning.
-
 ### Testfall
 | Namn | Testfall              | Indata                |  Förväntat resultat | PASS/FAIL |
 |------|-----------------------|-----------------------|---------------------|-----------|
@@ -46,6 +43,3 @@ Beskriv hur du kommit fram till om din kod fungerar. Beskriv de olika delarna oc
 |TC7| Stega igenom ord | "Hello world." [>>>] | DOT() | PASS |
 |TC8| Stega igenom ord | "Hello world." [>>><<] | Word(Hello) | PASS |
 |TC9| Stega igenom ord | "Hello" [<] | Exception | PASS |
-
-
-Screenshots från automatisk testning.
