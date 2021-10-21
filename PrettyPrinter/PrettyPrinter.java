@@ -1,4 +1,6 @@
 package PrettyPrinter;
+import java.util.ArrayList;
+
 import Parser.*;
 import Tokenizer.Token;
 
@@ -16,10 +18,10 @@ public class PrettyPrinter {
     public static String bold = "\033[0;1m";
 
     public void print() {
-        Sentences sentences = document.getSentences();
+        ArrayList<Sentence> sentences = document.getSentencesList();
 
-        for (int i = 0; i < sentences.sentences.size(); i++) {
-            Sentence current = sentences.sentences.get(i);
+        for (int i = 0; i < sentences.size(); i++) {
+            Sentence current = sentences.get(i);
             Token lastToken = current.tokens.get(current.tokens.size() - 1);
 
             String prefix = stylePrefix(lastToken);

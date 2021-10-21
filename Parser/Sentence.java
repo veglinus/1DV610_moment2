@@ -2,7 +2,7 @@ package Parser;
 import java.util.ArrayList;
 import Tokenizer.Token;
 
-// A sentence is an ArrayList of Tokens, consisting of words and a dot
+// A sentence is an ArrayList of Tokens, consisting of words and an ending
 public class Sentence {
 
     public ArrayList<Token> tokens = new ArrayList<Token>();
