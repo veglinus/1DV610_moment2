@@ -22,69 +22,85 @@ public class Tokenizer {
     }
 
     public Token next() {
-        Boolean endreached = checkForEndofInput();
-        if (endreached) {
-            return handleEndToken();
-        } else {
-            Token t = tokenize();
-            activeToken++;
-            //System.out.println(Tokens.get(activeToken).toString());
-            return (Token) t;
+        try {
+            Boolean endreached = checkForEndofInput();
+            if (endreached) {
+                return handleEndToken();
+            } else {
+                Token t = tokenize();
+                activeToken++;
+                //System.out.println(Tokens.get(activeToken).toString());
+                return (Token) t;
+            }   
+        } catch (Exception e) {
+            throw new RuntimeException("Can't go forward: " + e);
         }
     }
 
     public Token back() {
-        if (this.activeToken - 1 == -1) {
-            throw new IllegalArgumentException("Can't go back further.");
-        } else {
-            // Can cause issues with going backwards
-            this.activeToken--;
-            //System.out.println((Tokens.get(activeToken).toString());
-            return Tokens.get(activeToken);
+        try {
+            if (this.activeToken - 1 == -1) {
+                throw new IllegalArgumentException("Can't go back further.");
+            } else {
+                // Can cause issues with going backwards
+                this.activeToken--;
+                //System.out.println((Tokens.get(activeToken).toString());
+                return Tokens.get(activeToken);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Can't go back: " + e);
         }
     }
 
     private Token tokenize() {
-        this.input = this.input.stripLeading();
-        ArrayList<Token> matches = grammar.findRegexMatches(this.input);
-
-        if (!this.input.isEmpty() && matches.isEmpty()) { // Handles lexical errors
-            throw new IllegalArgumentException("No lexical element matches input.");
-        }
-
-        if (matches.size() > 1) { // Our match function found more than 1 match
-            return compareTokens(matches);
-        } else { // If there's only one Regex find, just return it
-            Token token = matches.get(0);
-            Tokens.add(new Token(token.type,token.value));
-            removeFromInput(token.value);
-            return token;
+        try {
+            this.input = this.input.stripLeading();
+            ArrayList<Token> matches = grammar.findRegexMatches(this.input);
+    
+            if (!this.input.isEmpty() && matches.isEmpty()) { // Handles lexical errors
+                throw new IllegalArgumentException("No lexical element matches input.");
+            }
+    
+            if (matches.size() > 1) { // Our match function found more than 1 match
+                return compareTokens(matches);
+            } else { // If there's only one Regex find, just return it
+                Token token = matches.get(0);
+                Tokens.add(new Token(token.type,token.value));
+                removeFromInput(token.value);
+                return token;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Could not tokenize: " + e);
         }
     }
 
     private Token compareTokens(ArrayList<Token> matches) {
-        List<Integer> indexlist = new ArrayList<Integer>();
-        List<Token> matchingTokens = new ArrayList<Token>();
+        try {
+            List<Integer> indexlist = new ArrayList<Integer>();
+            List<Token> matchingTokens = new ArrayList<Token>();
 
-        for (Token token : matches) { // Add where the tokens are found to a list
-            indexlist.add(this.input.indexOf(token.value));
-            matchingTokens.add(token);
-        }
+            for (Token token : matches) { // Add where the tokens are found to a list
+                indexlist.add(this.input.indexOf(token.value));
+                matchingTokens.add(token);
+            }
 
-        int lowest = Collections.min(indexlist); // Find the lowest value, aka first occurance
-        int position = indexlist.indexOf(lowest);
+            int lowest = Collections.min(indexlist); // Find the lowest value, aka first occurance
+            int position = indexlist.indexOf(lowest);
 
-        if (checkDuplicateValues(indexlist)) { // If two values are the same, we do maximal munch
-            Token winner = maxmimalMunch(matchingTokens);
-            Tokens.add(winner);
-            removeFromInput(winner.value);
-            return winner;
+            if (checkDuplicateValues(indexlist)) { // If two values are the same, we do maximal munch
+                Token winner = maxmimalMunch(matchingTokens);
+                Tokens.add(winner);
+                removeFromInput(winner.value);
+                return winner;
 
-        } else { // All matches are at different positions, so we grab the first occurance
-            Token firstToken = matches.get(position);
-            Tokens.add(firstToken);
-            removeFromInput(firstToken.value);
-            return firstToken;
+            } else { // All matches are at different positions, so we grab the first occurance
+                Token firstToken = matches.get(position);
+                Tokens.add(firstToken);
+                removeFromInput(firstToken.value);
+                return firstToken;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Can't comapre tokens: " + e);
         }
     }
 
